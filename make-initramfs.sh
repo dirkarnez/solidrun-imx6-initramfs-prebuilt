@@ -42,6 +42,7 @@ mkimage -A arm -O linux -T ramdisk -C gzip -n "Initial Ram Disk" -d initramfs.gz
 announce "init appears to have been successful" && \
 ls && \
 announce "copying files" && \
+install -v -m644 -D ./init /dist/init && \
 install -v -m644 -D ./initramfs.img /dist/initramfs.img && \
 announce "files copied"
 
