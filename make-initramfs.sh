@@ -36,13 +36,13 @@ arm-cortexa9_neon-linux-gnueabihf-gcc --version && \
 export CROSS_COMPILE="arm-cortexa9_neon-linux-gnueabihf-" && \
 announce "Building initramfs" && \
 arm-cortexa9_neon-linux-gnueabihf-gcc -static src/init.c -o init && \
+chown -R root:root * && \
 echo init | cpio -o --format=newc > initramfs && \
 gzip initramfs && \
 mkimage -A arm -O linux -T ramdisk -C gzip -n "Initial Ram Disk" -d initramfs.gz initramfs.img && \
 announce "init appears to have been successful" && \
 ls && \
 announce "copying files" && \
-install -v -m644 -D ./init /dist/init && \
 install -v -m644 -D ./initramfs.img /dist/initramfs.img && \
 announce "files copied"
 
