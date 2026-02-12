@@ -11,7 +11,7 @@ services:
   linux_imx6:
     platform: linux/amd64
     build: .
-    # user: root
+    user: root
     # command: sh -c "tail -f /dev/null"
     stdin_open: true # docker run -i
     tty: true        # docker run -t
