@@ -31,22 +31,19 @@ set -e
 # export UBOOT_CONFIG="mx6cuboxi_defconfig"
 # make mrproper
 # 
-export PATH="/opt/arm-cortexa9_neon-linux-gnueabihf/bin:$PATH" && \
+export PATH="/opt:/opt/arm-cortexa9_neon-linux-gnueabihf/bin:$PATH" && \
 arm-cortexa9_neon-linux-gnueabihf-gcc --version && \
 export CROSS_COMPILE="arm-cortexa9_neon-linux-gnueabihf-" && \
 announce "Building initramfs" && \
 arm-cortexa9_neon-linux-gnueabihf-gcc -static src/init.c -o init && \
 echo init | cpio -o --format=newc > initramfs && \
 gzip initramfs && \
-mkimage -A arm -O linux -T ramdisk -C gzip -n "Build Root File System" -d initramfs.gz initramfs.gz.uboot && \
+mkimage -A arm -O linux -T ramdisk -C gzip -n "Initial Ram Disk" -d initramfs.gz initramfs.img && \
 announce "init appears to have been successful" && \
-ls
-# announce "copying files" && \
-# install -v -m644 -D ./SPL /dist/SPL && \
-# install -v -m644 -D ./tools/mkimage  /dist/mkimage && \
-# install -v -m644 -D ./u-boot.img /dist/u-boot.img && \
-# install -v -m644 -D ./examples/standalone/hello_world.bin /dist/hello_world.bin && \
-# announce "files copied"
+ls && \
+announce "copying files" && \
+install -v -m644 -D ./initramfs.img /dist/initramfs.img && \
+announce "files copied"
 
 
 
