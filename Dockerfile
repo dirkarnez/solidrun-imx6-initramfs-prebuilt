@@ -18,6 +18,12 @@ RUN apt-get -y --no-install-recommends --allow-unauthenticated install \
    file \
    lzop
 
+RUN cd /opt; \
+   wget https://github.com/dirkarnez/solidrun-imx6-u-boot-prebuilt/releases/download/v2018.01-solidrun-imx6/solidrun-u-boot-imx6-v2018.01-solidrun-imx6-arm-cortexa9_neon-linux-gnueabihf-gcc-15.2.0-crosstool-ng-1.28.0.zip && \
+   unzip solidrun-u-boot-imx6-v2018.01-solidrun-imx6-arm-cortexa9_neon-linux-gnueabihf-gcc-15.2.0-crosstool-ng-1.28.0.zip && \
+   rm solidrun-u-boot-imx6-v2018.01-solidrun-imx6-arm-cortexa9_neon-linux-gnueabihf-gcc-15.2.0-crosstool-ng-1.28.0.zip && \
+   chmod -R +x .
+   
 RUN mkdir /workspace
 RUN mkdir /dist
 
