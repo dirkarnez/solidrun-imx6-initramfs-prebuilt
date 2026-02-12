@@ -16,7 +16,8 @@ RUN apt-get -y --no-install-recommends --allow-unauthenticated install \
    bash \
    bc \
    file \
-   lzop
+   lzop \
+   cpio
 
 RUN cd /opt; \
    wget https://github.com/dirkarnez/crosstool-ng-prebuilt/releases/download/v20251209/arm-cortexa9_neon-linux-gnueabihf.zip && \
